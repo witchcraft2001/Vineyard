@@ -1,5 +1,8 @@
 package ru.dm_dev.vineyard;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -14,10 +17,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private final String web_link = "https://vineyard.dm-dev.ru/";
     AboutFragment aboutFragment;
     HandbookFragment handbookFragment;
     EventsFragment eventsFragment;
@@ -107,12 +112,27 @@ public class MainActivity extends AppCompatActivity
             fragment = aboutFragment;
         } else if (id == R.id.nav_settings) {
             fragment = aboutFragment;
+        } else if (id == R.id.nav_web) {
+            openWebSite();
         }
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container, fragment).commit();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment).commit();
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
         return true;
+    }
+
+    private void openWebSite() {
+        try {
+            Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(web_link));
+            startActivity(myIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No application can handle this request."
+                    + " Please install a webbrowser",  Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 }
