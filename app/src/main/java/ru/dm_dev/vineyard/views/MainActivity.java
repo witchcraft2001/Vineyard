@@ -1,4 +1,4 @@
-package ru.dm_dev.vineyard;
+package ru.dm_dev.vineyard.views;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import ru.dm_dev.vineyard.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
