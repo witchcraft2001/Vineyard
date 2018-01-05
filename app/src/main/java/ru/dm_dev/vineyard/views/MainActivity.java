@@ -19,7 +19,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.activeandroid.query.Select;
+
 import ru.dm_dev.vineyard.R;
+import ru.dm_dev.vineyard.models.Area;
+import ru.dm_dev.vineyard.models.Bushe;
+import ru.dm_dev.vineyard.models.GrapeType;
+import ru.dm_dev.vineyard.models.Variety;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,6 +65,35 @@ public class MainActivity extends AppCompatActivity
         handbookFragment = new HandbookFragment();
         eventsFragment = new EventsFragment();
 
+//        GrapeType t = new GrapeType();
+//        t.name = "Столовый";
+//        t.save();
+//        Variety v = new Variety();
+//        v.name = "Памяти Негруля";
+//        v.description = "";
+//        v.grapeType = t;
+//        v.color = "Синий";
+//        v.save();
+//        Variety v1 = new Variety();
+//        v1.name = "Новый подарок Запорожью";
+//        v1.description = "НПЗ";
+//        v1.grapeType = t;
+//        v1.color = "Белый";
+//        v1.save();
+//        Area a = new Area();
+//        a.name = "Мой виноградник";
+//        a.description = "";
+//        a.save();
+//        Bushe b = new Bushe();
+//        b.name = "Памяти Негруля, куст 1";
+//        b.area = a;
+//        b.variety = v;
+//        b.save();
+//        Bushe b1 = new Bushe();
+//        b1.name = "НПЗ, куст 1";
+//        b1.variety = v1;
+//        b1.area = a;
+//        b1.save();
     }
 
     @Override

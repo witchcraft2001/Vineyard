@@ -2,6 +2,11 @@ package ru.dm_dev.vineyard.presenters;
 
 import android.database.MatrixCursor;
 
+import com.activeandroid.query.Select;
+
+import java.util.List;
+
+import ru.dm_dev.vineyard.models.Bushe;
 import ru.dm_dev.vineyard.views.IBushesFragmentView;
 
 public class BushesPresenter implements IBushesPresenter {
@@ -10,12 +15,8 @@ public class BushesPresenter implements IBushesPresenter {
     @Override
     public void init(IBushesFragmentView view) {
         this.view = view;
-        MatrixCursor mc = new MatrixCursor(new String[]{"_id", "photo", "sort", "name", "event", "area"});
-
-        mc.addRow(new Object[]{ 1, "", "vin1", "vinograd 1", "", ""});
-        mc.addRow(new Object[]{ 2, "", "vin2", "vinograd 2", "", ""});
-        mc.addRow(new Object[]{ 3, "", "vin3", "vinograd 3", "", ""});
-        view.setBushesListAdapter(mc);
+        List<Bushe> list = new Select().from(Bushe.class).orderBy("Name").execute();
+        view.setBushesListAdapter(list);
     }
 
     @Override

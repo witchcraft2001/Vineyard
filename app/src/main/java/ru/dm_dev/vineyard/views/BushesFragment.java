@@ -13,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import java.util.List;
+
 import ru.dm_dev.vineyard.R;
 import ru.dm_dev.vineyard.common.BushesListAdapter;
+import ru.dm_dev.vineyard.models.Bushe;
 import ru.dm_dev.vineyard.presenters.BushesPresenter;
 import ru.dm_dev.vineyard.presenters.IBushesPresenter;
 
@@ -125,8 +128,8 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
     }
 
     @Override
-    public void setBushesListAdapter(Cursor cursor) {
-        bushesListAdapter.swapCursor(cursor);
+    public void setBushesListAdapter(List<Bushe> list) {
+        bushesListAdapter.swapList(list);
     }
 
     /**
