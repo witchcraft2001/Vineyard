@@ -26,4 +26,8 @@
     <style name="Container.Background">
         <item name="android:background">@drawable/vineyard_bg</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@mipmap/vineyard_logo_white</item>
+    </style>
 </resources>
