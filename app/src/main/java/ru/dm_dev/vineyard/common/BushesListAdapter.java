@@ -8,15 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
+import ru.dm_dev.vineyard.models.Bushe;
+
 public class BushesListAdapter extends RecyclerView.Adapter<BushesListAdapter.ViewHolder> {
     private static final int VIEW_TYPE_LOADING = 0;
     private static final int VIEW_TYPE_ACTIVITY = 1;
 
-    private Cursor cursor;
+    private List<Bushe> list;
     private Activity activity;
 
-    public BushesListAdapter(Activity activity, Cursor cursor) {
-        this.cursor = cursor;
+    public BushesListAdapter(Activity activity, List<Bushe> list) {
+        this.list = list;
         this.activity = activity;
     }
 
@@ -28,25 +32,24 @@ public class BushesListAdapter extends RecyclerView.Adapter<BushesListAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        cursor.moveToPosition(position);
-        holder.setRowID(cursor.getInt(0));
-        holder.name.setText(cursor.getString(2));
-        holder.description.setText(cursor.getString(3));
+        holder.setRowID(list.get(position).getId());
+        holder.name.setText(list.get(position).name);
+        holder.description.setText(list.get(position).variety.description);
     }
 
     @Override
     public int getItemCount() {
-        return (cursor != null) ? cursor.getCount() : 0;
+        return (list != null) ? list.size() : 0;
     }
 
-    public void swapCursor(Cursor cursor) {
-        this.cursor = cursor;
+    public void swapList(List<Bushe> list) {
+        this.list = list;
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private int rowID;
+        private long rowID;
         public final TextView name;
         public final TextView description;
 
@@ -56,7 +59,7 @@ public class BushesListAdapter extends RecyclerView.Adapter<BushesListAdapter.Vi
             description = (TextView)itemView.findViewById(android.R.id.text2);
         }
 
-        public void setRowID(int rowID) {
+        public void setRowID(long rowID) {
             this.rowID = rowID;
         }
     }
