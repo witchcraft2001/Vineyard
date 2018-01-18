@@ -2,7 +2,6 @@ package ru.dm_dev.vineyard.views;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,31 +15,25 @@ import android.widget.ProgressBar;
 import java.util.List;
 
 import ru.dm_dev.vineyard.R;
+import ru.dm_dev.vineyard.common.AreasListAdapter;
 import ru.dm_dev.vineyard.common.BushesListAdapter;
-import ru.dm_dev.vineyard.models.Bushe;
+import ru.dm_dev.vineyard.models.Area;
+import ru.dm_dev.vineyard.presenters.AreasPresenter;
 import ru.dm_dev.vineyard.presenters.BushesPresenter;
+import ru.dm_dev.vineyard.presenters.IAreasPresenter;
 import ru.dm_dev.vineyard.presenters.IBushesPresenter;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link BushesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link BushesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class BushesFragment extends Fragment implements IBushesFragmentView {
+public class AreasFragment extends Fragment implements IAreasFragmentView {
 
     View rootView;
     RecyclerView rv;
     ProgressBar progressBar;
-    BushesListAdapter bushesListAdapter;
-    IBushesPresenter presenter;
+    AreasListAdapter areasListAdapter;
+    IAreasPresenter presenter;
 
     private OnFragmentInteractionListener mListener;
 
-    public BushesFragment() {
+    public AreasFragment() {
         // Required empty public constructor
     }
 
@@ -51,8 +44,8 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
      * @return A new instance of fragment BushesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BushesFragment newInstance(String param1, String param2) {
-        BushesFragment fragment = new BushesFragment();
+    public static AreasFragment newInstance(String param1, String param2) {
+        AreasFragment fragment = new AreasFragment();
         return fragment;
     }
 
@@ -77,10 +70,10 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        bushesListAdapter = new BushesListAdapter(getActivity(), null);
-        rv.setAdapter(bushesListAdapter);
+        areasListAdapter = new AreasListAdapter(getActivity(), null);
+        rv.setAdapter(areasListAdapter);
         rv.setHasFixedSize(true);
-        presenter = new BushesPresenter();
+        presenter = new AreasPresenter();
         presenter.init(this);
         return rootView;
     }
@@ -114,8 +107,8 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
     }
 
     @Override
-    public void setBushesListAdapter(List<Bushe> list) {
-        bushesListAdapter.swapList(list);
+    public void setAreasListAdapter(List<Area> list) {
+        areasListAdapter.swapList(list);
     }
 
     public interface OnFragmentInteractionListener {
