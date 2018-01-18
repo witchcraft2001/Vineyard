@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ru.dm_dev.vineyard.views.EditAreaActivity">
+
+    <EditText
+        android:id="@+id/text_area_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_area_name"
+        />
+
+    <EditText
+        android:id="@+id/text_area_description"
+        android:lines="6"
+        android:maxLines="10"
+        android:gravity="top|left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_area_description"
+        android:scrollbars="vertical"
+        />
+
+</LinearLayout>
