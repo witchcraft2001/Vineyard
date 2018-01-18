@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     private final String web_link = "https://vineyard.dm-dev.ru/";
     AboutFragment aboutFragment;
+    AreasFragment areasFragment;
     HandbookFragment handbookFragment;
     EventsFragment eventsFragment;
     BushesFragment bushesFragment;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         bushesFragment = new BushesFragment();
+        areasFragment = new AreasFragment();
         aboutFragment = new AboutFragment();
         handbookFragment = new HandbookFragment();
         eventsFragment = new EventsFragment();
@@ -104,6 +106,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_bush) {
             fragment = bushesFragment;
+        } else if (id == R.id.nav_areas) {
+            fragment = areasFragment;
         } else if (id == R.id.nav_gallery) {
             fragment = aboutFragment;
         } else if (id == R.id.nav_journal) {

@@ -9,4 +9,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_bushes">Кустарники</string>
+    <string name="menu_item_bushes">Кусты</string>
+    <string name="menu_item_sites">Участки</string>
+    <string name="menu_item_journal">Дневник</string>
+    <string name="menu_item_handbook">Справочник</string>
+    <string name="menu_item_galery">Галерея</string>
+    <string name="menu_item_settings">Параметры</string>
+    <string name="menu_item_about">О программе</string>
+    <string name="menu_header_other">Прочее</string>
+    <string name="menu_item_web">Перейти на сайт</string>
 </resources>

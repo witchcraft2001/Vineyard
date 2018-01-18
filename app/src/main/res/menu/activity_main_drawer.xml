@@ -7,35 +7,39 @@
         <item
             android:id="@+id/nav_bush"
             android:icon="@drawable/ic_menu_leaf"
-            android:title="Кусты" />
+            android:title="@string/menu_item_bushes" />
+        <item
+            android:id="@+id/nav_areas"
+            android:icon="@drawable/ic_menu_leaf"
+            android:title="@string/menu_item_sites" />
         <item
             android:id="@+id/nav_journal"
             android:icon="@drawable/ic_menu_calendar"
-            android:title="Дневник" />
+            android:title="@string/menu_item_journal" />
         <item
             android:id="@+id/nav_handbook"
             android:icon="@drawable/ic_menu_book_open"
-            android:title="Справочник" />
+            android:title="@string/menu_item_handbook" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Галерея" />
+            android:title="@string/menu_item_galery" />
 
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Параметры" />
+            android:title="@string/menu_item_settings" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_help"
-            android:title="О программе" />
+            android:title="@string/menu_item_about" />
     </group>
-    <item android:title="Прочее">
+    <item android:title="@string/menu_header_other">
         <menu>
             <item
                 android:id="@+id/nav_web"
                 android:icon="@drawable/ic_menu_web"
-                android:title="Перейти на сайт" />
+                android:title="@string/menu_item_web" />
         </menu>
     </item>
 
