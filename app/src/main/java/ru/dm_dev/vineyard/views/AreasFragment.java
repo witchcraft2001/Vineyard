@@ -12,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import java.util.List;
+
 import ru.dm_dev.vineyard.R;
 import ru.dm_dev.vineyard.common.AreasListAdapter;
 import ru.dm_dev.vineyard.common.BushesListAdapter;
+import ru.dm_dev.vineyard.models.Area;
 import ru.dm_dev.vineyard.presenters.AreasPresenter;
 import ru.dm_dev.vineyard.presenters.BushesPresenter;
 import ru.dm_dev.vineyard.presenters.IAreasPresenter;
@@ -43,20 +46,12 @@ public class AreasFragment extends Fragment implements IAreasFragmentView {
     // TODO: Rename and change types and number of parameters
     public static AreasFragment newInstance(String param1, String param2) {
         AreasFragment fragment = new AreasFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
     }
 
     @Override
@@ -93,12 +88,6 @@ public class AreasFragment extends Fragment implements IAreasFragmentView {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
     }
 
     @Override
@@ -118,20 +107,10 @@ public class AreasFragment extends Fragment implements IAreasFragmentView {
     }
 
     @Override
-    public void setAreasListAdapter(Cursor cursor) {
-        areasListAdapter.swapCursor(cursor);
+    public void setAreasListAdapter(List<Area> list) {
+        areasListAdapter.swapList(list);
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

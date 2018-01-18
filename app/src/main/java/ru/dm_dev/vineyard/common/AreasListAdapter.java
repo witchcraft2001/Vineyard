@@ -8,15 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
+import ru.dm_dev.vineyard.models.Area;
+
 public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.ViewHolder> {
     private static final int VIEW_TYPE_LOADING = 0;
     private static final int VIEW_TYPE_ACTIVITY = 1;
 
-    private Cursor cursor;
+    private List<Area> list;
     private Activity activity;
 
-    public AreasListAdapter(Activity activity, Cursor cursor) {
-        this.cursor = cursor;
+    public AreasListAdapter(Activity activity, List<Area> list) {
+        this.list = list;
         this.activity = activity;
     }
 
@@ -28,25 +32,24 @@ public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        cursor.moveToPosition(position);
-        holder.setRowID(cursor.getInt(0));
-        holder.name.setText(cursor.getString(2));
-        holder.description.setText(cursor.getString(3));
+        holder.setRowID(list.get(position).getId());
+        holder.name.setText(list.get(position).name);
+        holder.description.setText(list.get(position).description);
     }
 
     @Override
     public int getItemCount() {
-        return (cursor != null) ? cursor.getCount() : 0;
+        return (list != null) ? list.size() : 0;
     }
 
-    public void swapCursor(Cursor cursor) {
-        this.cursor = cursor;
+    public void swapList(List<Area> list) {
+        this.list = list;
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private int rowID;
+        private long rowID;
         public final TextView name;
         public final TextView description;
 
@@ -56,7 +59,7 @@ public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.View
             description = (TextView)itemView.findViewById(android.R.id.text2);
         }
 
-        public void setRowID(int rowID) {
+        public void setRowID(long rowID) {
             this.rowID = rowID;
         }
     }

@@ -96,6 +96,12 @@ public class MainActivity extends AppCompatActivity
 //        b1.variety = v1;
 //        b1.area = a;
 //        b1.save();
+//        Area a = new Area();
+//        a.name = "Озерная";
+//        a.save();
+//        a = new Area();
+//        a.name = "Пришвина";
+//        a.save();
     }
 
     @Override
