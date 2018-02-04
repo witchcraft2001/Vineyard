@@ -16,6 +16,8 @@ public class Bushe extends Model {
     public Variety variety;
     @Column(name = "Area")
     public Area area;
+    @Column(name = "Description")
+    public String description;
 
     @Column(name = "guid")
     public long Guid;

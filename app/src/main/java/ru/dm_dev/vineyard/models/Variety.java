@@ -21,6 +21,11 @@ public class Variety extends Model {
     @Column(name = "guid")
     public long Guid;
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public Variety() {
         Guid = new Date().getTime();
     }

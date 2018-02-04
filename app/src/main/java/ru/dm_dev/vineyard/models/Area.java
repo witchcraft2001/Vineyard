@@ -21,6 +21,11 @@ public class Area extends Model {
         Guid = new Date().getTime();
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public List<Bushe> busheList() {
         return getMany(Bushe.class, "Area");
     }

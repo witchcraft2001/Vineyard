@@ -1,10 +1,13 @@
 package ru.dm_dev.vineyard.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +24,7 @@ import java.util.List;
 
 import ru.dm_dev.vineyard.R;
 import ru.dm_dev.vineyard.common.BushesListAdapter;
+import ru.dm_dev.vineyard.common.IAdapterClickListener;
 import ru.dm_dev.vineyard.models.Bushe;
 import ru.dm_dev.vineyard.presenters.BushesPresenter;
 import ru.dm_dev.vineyard.presenters.IBushesPresenter;
@@ -34,7 +38,7 @@ import ru.dm_dev.vineyard.presenters.IBushesPresenter;
  * Use the {@link BushesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BushesFragment extends Fragment implements IBushesFragmentView {
+public class BushesFragment extends Fragment implements IBushesFragmentView, View.OnClickListener, IAdapterClickListener {
 
     View rootView;
     RecyclerView rv;
@@ -95,11 +99,13 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        bushesListAdapter = new BushesListAdapter(getActivity(), null);
+        bushesListAdapter = new BushesListAdapter(getActivity(), null, this);
         rv.setAdapter(bushesListAdapter);
         rv.setHasFixedSize(true);
         presenter = new BushesPresenter();
         presenter.init(this);
+        FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(this);
         return rootView;
     }
 
@@ -135,6 +141,22 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
     public void setBushesListAdapter(List<Bushe> list) {
         bushesListAdapter.swapList(list);
         Log.d(LOG_TAG, "Bushes count " + list.size());
+    }
+
+    @Override
+    public void onClick(long id) {
+        Intent intent = new Intent(getContext(), EditBusheActivity.class);
+        intent.putExtra("Id", id);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+        Intent intent = new Intent(getContext(), EditBusheActivity.class);
+        intent.putExtra("Id", 0L);
+        startActivity(intent);
     }
 
     public interface OnFragmentInteractionListener {

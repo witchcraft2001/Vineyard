@@ -22,4 +22,6 @@
     <string name="hint_area_description">Описание участка</string>
     <string name="bar_item_save">Сохранить</string>
     <string name="find_place_holder">Поиск</string>
+    <string name="hint_bushe_name">Название куста</string>
+    <string name="hint_bushe_description">Описание</string>
 </resources>

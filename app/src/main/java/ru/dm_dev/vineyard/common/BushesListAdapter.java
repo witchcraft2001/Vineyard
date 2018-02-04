@@ -18,10 +18,12 @@ public class BushesListAdapter extends RecyclerView.Adapter<BushesListAdapter.Vi
 
     private List<Bushe> list;
     private Activity activity;
+    private IAdapterClickListener clickListener;
 
-    public BushesListAdapter(Activity activity, List<Bushe> list) {
+    public BushesListAdapter(Activity activity, List<Bushe> list, IAdapterClickListener clickListener) {
         this.list = list;
         this.activity = activity;
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -57,6 +59,14 @@ public class BushesListAdapter extends RecyclerView.Adapter<BushesListAdapter.Vi
             super(itemView);
             name = (TextView)itemView.findViewById(R.id.name);
             description = (TextView)itemView.findViewById(R.id.description);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (clickListener != null) {
+                        clickListener.onClick(rowID);
+                    }
+                }
+            });
         }
 
         public void setRowID(long rowID) {
