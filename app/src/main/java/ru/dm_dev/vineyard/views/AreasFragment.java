@@ -1,6 +1,7 @@
 package ru.dm_dev.vineyard.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,13 +22,14 @@ import java.util.List;
 import ru.dm_dev.vineyard.R;
 import ru.dm_dev.vineyard.common.AreasListAdapter;
 import ru.dm_dev.vineyard.common.BushesListAdapter;
+import ru.dm_dev.vineyard.common.IAdapterClickListener;
 import ru.dm_dev.vineyard.models.Area;
 import ru.dm_dev.vineyard.presenters.AreasPresenter;
 import ru.dm_dev.vineyard.presenters.BushesPresenter;
 import ru.dm_dev.vineyard.presenters.IAreasPresenter;
 import ru.dm_dev.vineyard.presenters.IBushesPresenter;
 
-public class AreasFragment extends Fragment implements IAreasFragmentView, View.OnClickListener {
+public class AreasFragment extends Fragment implements IAreasFragmentView, View.OnClickListener, IAdapterClickListener {
 
     View rootView;
     RecyclerView rv;
@@ -87,12 +89,11 @@ public class AreasFragment extends Fragment implements IAreasFragmentView, View.
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        areasListAdapter = new AreasListAdapter(getActivity(), null);
+        areasListAdapter = new AreasListAdapter(getActivity(), null, this);
         rv.setAdapter(areasListAdapter);
         rv.setHasFixedSize(true);
         presenter = new AreasPresenter();
         presenter.init(this);
-
         FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab);
         fab.setOnClickListener(this);
         return rootView;
@@ -135,7 +136,16 @@ public class AreasFragment extends Fragment implements IAreasFragmentView, View.
     public void onClick(View view) {
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-//        startActivity(new Intent(MainActivity.this, EditAreaActivity.class));
+        Intent intent = new Intent(getContext(), EditAreaActivity.class);
+        intent.putExtra("Id", 0L);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(long id) {
+        Intent intent = new Intent(getContext(), EditAreaActivity.class);
+        intent.putExtra("Id", id);
+        startActivity(intent);
     }
 
     public interface OnFragmentInteractionListener {

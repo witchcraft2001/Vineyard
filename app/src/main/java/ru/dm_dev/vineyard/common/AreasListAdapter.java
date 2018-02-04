@@ -19,10 +19,12 @@ public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.View
 
     private List<Area> list;
     private Activity activity;
+    private IAdapterClickListener clickListener;
 
-    public AreasListAdapter(Activity activity, List<Area> list) {
+    public AreasListAdapter(Activity activity, List<Area> list, IAdapterClickListener clickListener) {
         this.list = list;
         this.activity = activity;
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -56,8 +58,16 @@ public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView)itemView.findViewById(R.id.name);
-            description = (TextView)itemView.findViewById(R.id.description);
+            name = (TextView) itemView.findViewById(R.id.name);
+            description = (TextView) itemView.findViewById(R.id.description);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (clickListener != null) {
+                        clickListener.onClick(rowID);
+                    }
+                }
+            });
         }
 
         public void setRowID(long rowID) {

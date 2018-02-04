@@ -1,5 +1,7 @@
 package ru.dm_dev.vineyard.presenters;
 
+import android.os.AsyncTask;
+
 import com.activeandroid.query.Select;
 import java.util.List;
 
@@ -12,12 +14,30 @@ public class AreasPresenter implements IAreasPresenter {
     @Override
     public void init(IAreasFragmentView view) {
         this.view = view;
-        List<Area> list = new Select().from(Area.class).orderBy("Name").execute();
-        view.setAreasListAdapter(list);
     }
 
     @Override
     public void onResume() {
+        new GetAreas().execute("");
+    }
+
+    public class GetAreas extends AsyncTask<String, Void, List<Area>> {
+        @Override
+        protected List<Area> doInBackground(String... strings) {
+            publishProgress();
+            return new Select().from(Area.class).orderBy("Name").execute();
+        }
+
+        @Override
+        protected void onPostExecute(List<Area> list) {
+            view.hideLoader();
+            view.setAreasListAdapter(list);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            view.showLoader();
+        }
     }
 
     @Override

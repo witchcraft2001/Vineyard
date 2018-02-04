@@ -4,6 +4,8 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.util.Date;
+
 @Table(name = "Bushes", id = "_id")
 public class Bushe extends Model {
     @Column(name = "Name")
@@ -14,4 +16,11 @@ public class Bushe extends Model {
     public Variety variety;
     @Column(name = "Area")
     public Area area;
+
+    @Column(name = "guid")
+    public long Guid;
+
+    public Bushe() {
+        Guid = new Date().getTime();
+    }
 }

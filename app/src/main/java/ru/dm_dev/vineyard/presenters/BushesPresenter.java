@@ -1,6 +1,7 @@
 package ru.dm_dev.vineyard.presenters;
 
 import android.database.MatrixCursor;
+import android.os.AsyncTask;
 
 import com.activeandroid.query.Select;
 
@@ -15,12 +16,30 @@ public class BushesPresenter implements IBushesPresenter {
     @Override
     public void init(IBushesFragmentView view) {
         this.view = view;
-        List<Bushe> list = new Select().from(Bushe.class).orderBy("Name").execute();
-        view.setBushesListAdapter(list);
+    }
+
+    public class GetBushes extends AsyncTask<String, Void, List<Bushe>> {
+        @Override
+        protected List<Bushe> doInBackground(String... strings) {
+            publishProgress();
+            return new Select().from(Bushe.class).orderBy("Name").execute();
+        }
+
+        @Override
+        protected void onPostExecute(List<Bushe> list) {
+            view.hideLoader();
+            view.setBushesListAdapter(list);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            view.showLoader();
+        }
     }
 
     @Override
     public void onResume() {
+        new GetBushes().execute("");
     }
 
     @Override

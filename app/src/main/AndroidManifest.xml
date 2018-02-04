@@ -15,7 +15,7 @@
             android:value="vineyard.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="2" />
+            android:value="5" />
         <meta-data
             android:name="AA_MODELS"
             android:value="ru.dm_dev.vineyard.models.Area, ru.dm_dev.vineyard.models.Bushe, ru.dm_dev.vineyard.models.GrapeType, ru.dm_dev.vineyard.models.Variety" />
