@@ -10,7 +10,7 @@
             android:title="@string/menu_item_bushes" />
         <item
             android:id="@+id/nav_areas"
-            android:icon="@drawable/ic_menu_leaf"
+            android:icon="@drawable/google_maps"
             android:title="@string/menu_item_sites" />
         <item
             android:id="@+id/nav_journal"
@@ -24,7 +24,6 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_item_galery" />
-
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"

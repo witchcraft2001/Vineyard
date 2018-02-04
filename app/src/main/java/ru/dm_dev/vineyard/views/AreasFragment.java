@@ -4,10 +4,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -23,7 +27,7 @@ import ru.dm_dev.vineyard.presenters.BushesPresenter;
 import ru.dm_dev.vineyard.presenters.IAreasPresenter;
 import ru.dm_dev.vineyard.presenters.IBushesPresenter;
 
-public class AreasFragment extends Fragment implements IAreasFragmentView {
+public class AreasFragment extends Fragment implements IAreasFragmentView, View.OnClickListener {
 
     View rootView;
     RecyclerView rv;
@@ -52,6 +56,19 @@ public class AreasFragment extends Fragment implements IAreasFragmentView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_menu, menu);
+        // Associate searchable configuration with the SearchView
+//        SearchManager searchManager =
+//                (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView =
+//                (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        searchView.setOnQueryTextListener(this);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -75,6 +92,9 @@ public class AreasFragment extends Fragment implements IAreasFragmentView {
         rv.setHasFixedSize(true);
         presenter = new AreasPresenter();
         presenter.init(this);
+
+        FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(this);
         return rootView;
     }
 
@@ -109,6 +129,13 @@ public class AreasFragment extends Fragment implements IAreasFragmentView {
     @Override
     public void setAreasListAdapter(List<Area> list) {
         areasListAdapter.swapList(list);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+//        startActivity(new Intent(MainActivity.this, EditAreaActivity.class));
     }
 
     public interface OnFragmentInteractionListener {

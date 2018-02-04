@@ -44,16 +44,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                startActivity(new Intent(MainActivity.this, EditAreaActivity.class));
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,6 +58,7 @@ public class MainActivity extends AppCompatActivity
         handbookFragment = new HandbookFragment();
         eventsFragment = new EventsFragment();
 
+        replaceFragment(bushesFragment);
 //        GrapeType t = new GrapeType();
 //        t.name = "Столовый";
 //        t.save();
@@ -144,7 +135,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         setTitle(item.getTitle());
 
-        Fragment fragment = null;
+        Fragment fragment = bushesFragment;
 
         if (id == R.id.nav_bush) {
             fragment = bushesFragment;
@@ -164,14 +155,18 @@ public class MainActivity extends AppCompatActivity
             openWebSite();
         }
 
+        replaceFragment(fragment);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private void replaceFragment(Fragment fragment){
         if (fragment != null) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.container, fragment);
             fragmentTransaction.commit();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     private void openWebSite() {

@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -60,8 +62,21 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_menu, menu);
+        // Associate searchable configuration with the SearchView
+//        SearchManager searchManager =
+//                (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView =
+//                (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        searchView.setOnQueryTextListener(this);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
