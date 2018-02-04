@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,6 +41,7 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
     IBushesPresenter presenter;
 
     private OnFragmentInteractionListener mListener;
+    private final String LOG_TAG = "BushesFragmentView";
 
     public BushesFragment() {
         // Required empty public constructor
@@ -116,6 +119,7 @@ public class BushesFragment extends Fragment implements IBushesFragmentView {
     @Override
     public void setBushesListAdapter(List<Bushe> list) {
         bushesListAdapter.swapList(list);
+        Log.d(LOG_TAG, "Bushes count " + list.size());
     }
 
     public interface OnFragmentInteractionListener {

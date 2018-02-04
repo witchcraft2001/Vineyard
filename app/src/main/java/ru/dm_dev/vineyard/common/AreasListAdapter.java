@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import ru.dm_dev.vineyard.R;
 import ru.dm_dev.vineyard.models.Area;
 
 public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.ViewHolder> {
@@ -26,7 +27,7 @@ public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_two_rows_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -55,8 +56,8 @@ public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView)itemView.findViewById(android.R.id.text1);
-            description = (TextView)itemView.findViewById(android.R.id.text2);
+            name = (TextView)itemView.findViewById(R.id.name);
+            description = (TextView)itemView.findViewById(R.id.description);
         }
 
         public void setRowID(long rowID) {
