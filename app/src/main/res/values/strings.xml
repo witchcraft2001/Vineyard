@@ -24,4 +24,9 @@
     <string name="find_place_holder">Поиск</string>
     <string name="hint_bushe_name">Название куста</string>
     <string name="hint_bushe_description">Описание</string>
+    <string name="text_textview_name">Название</string>
+    <string name="text_textview_variety">Сорт</string>
+    <string name="text_textview_area">Участок</string>
+    <string name="text_textview_planted">Дата посадки</string>
+    <string name="text_textview_description">Описание</string>
 </resources>

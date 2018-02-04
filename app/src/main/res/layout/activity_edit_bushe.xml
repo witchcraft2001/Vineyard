@@ -1,29 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ru.dm_dev.vineyard.views.EditBusheActivity">
+    tools:context="ru.dm_dev.vineyard.views.EditBusheActivity"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/textview_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_textview_name"/>
 
     <EditText
         android:id="@+id/text_name"
+        android:layout_below="@id/textview_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_bushe_name"
         />
 
+    <TextView
+        android:id="@+id/textview_variety"
+        android:layout_below="@id/text_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_textview_variety"/>
+
     <Spinner
         android:id="@+id/variety"
+        android:layout_below="@id/textview_variety"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textview_area"
+        android:layout_below="@id/variety"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_textview_area"/>
 
     <Spinner
         android:id="@+id/area"
+        android:layout_below="@id/textview_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <TextView
+        android:id="@+id/textview_date"
+        android:layout_below="@id/area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_textview_planted"/>
+
+    <EditText
+        android:id="@+id/text_date"
+        android:layout_below="@id/textview_date"
+        android:layout_toLeftOf="@id/button_set_date"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="04/02/2018"/>
+
+    <ImageButton
+        android:id="@+id/button_set_date"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/textview_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar"
+        />
+
+    <TextView
+        android:id="@+id/textview_description"
+        android:layout_below="@id/text_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_textview_description"/>
+
     <EditText
         android:id="@+id/text_description"
+        android:layout_below="@id/textview_description"
         android:lines="6"
         android:maxLines="10"
         android:gravity="top|left"
@@ -32,4 +90,5 @@
         android:hint="@string/hint_bushe_description"
         android:scrollbars="vertical"
         />
-</LinearLayout>
+
+</RelativeLayout>

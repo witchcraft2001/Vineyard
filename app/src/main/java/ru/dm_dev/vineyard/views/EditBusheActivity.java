@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class EditBusheActivity extends AppCompatActivity implements IEditBusheVi
     private IEditBushePresenter presenter;
     private Spinner areasSpinner;
     private Spinner varietiesSpinner;
+    private TextView dateEdit;
     private long id;
 
     @Override
@@ -97,13 +99,15 @@ public class EditBusheActivity extends AppCompatActivity implements IEditBusheVi
 
     @Override
     public void setAreasListAdapter(List<Area> list) {
-        ArrayAdapter<Area> adapter = new ArrayAdapter<Area>(this,android.R.layout.simple_spinner_item,list);
+        ArrayAdapter<Area> adapter = new ArrayAdapter<Area>(this,android.R.layout.simple_spinner_dropdown_item,list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         areasSpinner.setAdapter(adapter);
     }
 
     @Override
     public void setVarietiesListAdapter(List<Variety> list) {
-        ArrayAdapter<Variety> adapter = new ArrayAdapter<Variety>(this,android.R.layout.simple_spinner_item,list);
+        ArrayAdapter<Variety> adapter = new ArrayAdapter<Variety>(this,android.R.layout.simple_spinner_dropdown_item,list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         varietiesSpinner.setAdapter(adapter);
     }
 }

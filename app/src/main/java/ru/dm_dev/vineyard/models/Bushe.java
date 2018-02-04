@@ -19,8 +19,12 @@ public class Bushe extends Model {
     @Column(name = "Description")
     public String description;
 
+    @Column(name = "PlantedAt")
+    public long PlantedAt;
+
     @Column(name = "guid")
     public long Guid;
+
 
     public Bushe() {
         Guid = new Date().getTime();
