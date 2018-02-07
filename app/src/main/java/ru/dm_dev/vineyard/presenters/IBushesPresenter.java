@@ -6,4 +6,6 @@ import ru.dm_dev.vineyard.views.IBushesFragmentView;
 public interface IBushesPresenter extends BaseFragmentPresenter<IBushesFragmentView> {
     void onResume();
     void onPause();
+    void setSearchQuery(String query);
+    void Refresh();
 }

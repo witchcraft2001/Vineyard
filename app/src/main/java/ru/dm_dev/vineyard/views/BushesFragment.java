@@ -1,5 +1,6 @@
 package ru.dm_dev.vineyard.views;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,7 +40,7 @@ import ru.dm_dev.vineyard.presenters.IBushesPresenter;
  * Use the {@link BushesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BushesFragment extends Fragment implements IBushesFragmentView, View.OnClickListener, IAdapterClickListener {
+public class BushesFragment extends Fragment implements IBushesFragmentView, View.OnClickListener, IAdapterClickListener, SearchView.OnQueryTextListener {
 
     View rootView;
     RecyclerView rv;
@@ -69,11 +71,11 @@ public class BushesFragment extends Fragment implements IBushesFragmentView, Vie
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.fragment_menu, menu);
         // Associate searchable configuration with the SearchView
-//        SearchManager searchManager =
-//                (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView =
-//                (SearchView) menu.findItem(R.id.action_search).getActionView();
-//        searchView.setOnQueryTextListener(this);
+        SearchManager searchManager =
+                (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setOnQueryTextListener(this);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -157,6 +159,17 @@ public class BushesFragment extends Fragment implements IBushesFragmentView, Vie
         Intent intent = new Intent(getContext(), EditBusheActivity.class);
         intent.putExtra("Id", 0L);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        presenter.setSearchQuery(newText);
+        return false;
     }
 
     public interface OnFragmentInteractionListener {

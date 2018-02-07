@@ -12,6 +12,7 @@ import ru.dm_dev.vineyard.views.IBushesFragmentView;
 
 public class BushesPresenter implements IBushesPresenter {
     private IBushesFragmentView view;
+    private String searchQuery;
 
     @Override
     public void init(IBushesFragmentView view) {
@@ -22,6 +23,9 @@ public class BushesPresenter implements IBushesPresenter {
         @Override
         protected List<Bushe> doInBackground(String... strings) {
             publishProgress();
+            if (strings[0] != null && !strings[0].isEmpty()) {
+                return new Select().from(Bushe.class).where("Name LIKE ?", "%" + strings[0] + "%").orderBy("Name").execute();
+            }
             return new Select().from(Bushe.class).orderBy("Name").execute();
         }
 
@@ -45,5 +49,16 @@ public class BushesPresenter implements IBushesPresenter {
     @Override
     public void onPause() {
 
+    }
+
+    @Override
+    public void Refresh() {
+        new GetBushes().execute(searchQuery);
+    }
+
+    @Override
+    public void setSearchQuery(String query) {
+        this.searchQuery = query;
+        Refresh();
     }
 }

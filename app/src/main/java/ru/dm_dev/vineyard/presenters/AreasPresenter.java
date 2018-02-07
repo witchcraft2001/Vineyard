@@ -10,6 +10,7 @@ import ru.dm_dev.vineyard.views.IAreasFragmentView;
 
 public class AreasPresenter implements IAreasPresenter {
     private IAreasFragmentView view;
+    private String searchQuery;
 
     @Override
     public void init(IAreasFragmentView view) {
@@ -25,6 +26,9 @@ public class AreasPresenter implements IAreasPresenter {
         @Override
         protected List<Area> doInBackground(String... strings) {
             publishProgress();
+            if (strings[0] != null && !strings[0].isEmpty()) {
+                return new Select().from(Area.class).where("Name LIKE ?", "%" + strings[0] + "%").orderBy("Name").execute();
+            }
             return new Select().from(Area.class).orderBy("Name").execute();
         }
 
@@ -43,5 +47,16 @@ public class AreasPresenter implements IAreasPresenter {
     @Override
     public void onPause() {
 
+    }
+
+    @Override
+    public void Refresh() {
+        new GetAreas().execute(searchQuery);
+    }
+
+    @Override
+    public void setSearchQuery(String query) {
+        this.searchQuery = query;
+        Refresh();
     }
 }

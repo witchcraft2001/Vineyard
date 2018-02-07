@@ -1,0 +1,1 @@
+ALTER TABLE Bushes ADD COLUMN PlantedAt INTEGER;
