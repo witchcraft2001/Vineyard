@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:text="04/02/2018"/>
+        android:text="04.02.2018"/>
 
     <ImageButton
         android:id="@+id/button_set_date"

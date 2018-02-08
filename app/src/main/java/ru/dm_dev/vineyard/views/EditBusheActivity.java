@@ -36,6 +36,7 @@ public class EditBusheActivity extends AppCompatActivity implements IEditBusheVi
         areasSpinner = (Spinner)findViewById(R.id.area);
         varietiesSpinner = (Spinner)findViewById(R.id.variety);
         presenter = new EditBushePresenter(this);
+        dateEdit = (TextView)findViewById(R.id.text_date);
         Intent intent = getIntent();
         id = intent.getLongExtra("Id", 0);
         presenter.init(id);
@@ -83,6 +84,21 @@ public class EditBusheActivity extends AppCompatActivity implements IEditBusheVi
     }
 
     @Override
+    public void setPlantedAt(String date) {
+        dateEdit.setText(date);
+    }
+
+    @Override
+    public void setSelectedVariety(int pos) {
+        varietiesSpinner.setSelection(pos);
+    }
+
+    @Override
+    public void setSelectedArea(int pos) {
+        areasSpinner.setSelection(pos);
+    }
+
+    @Override
     public String getName() {
         return editName.getText().toString();
     }
@@ -90,6 +106,21 @@ public class EditBusheActivity extends AppCompatActivity implements IEditBusheVi
     @Override
     public String getDescription() {
         return editDescription.getText().toString();
+    }
+
+    @Override
+    public String getPlantedAt() {
+        return dateEdit.getText().toString();
+    }
+
+    @Override
+    public Variety getSelectedVariety() {
+        return (Variety)varietiesSpinner.getSelectedItem() ;
+    }
+
+    @Override
+    public Area getSelectedArea() {
+        return (Area)areasSpinner.getSelectedItem();
     }
 
     @Override
