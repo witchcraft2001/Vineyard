@@ -29,4 +29,5 @@
     <string name="text_textview_area">Участок</string>
     <string name="text_textview_planted">Дата посадки</string>
     <string name="text_textview_description">Описание</string>
+    <string name="menu_item_grape_types">Сорта/гибр.формы</string>
 </resources>

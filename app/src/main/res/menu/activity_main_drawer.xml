@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_menu_calendar"
             android:title="@string/menu_item_journal" />
         <item
+            android:id="@+id/nav_grape_types"
+            android:icon="@drawable/ic_menu_leaf"
+            android:title="@string/menu_item_grape_types" />
+        <item
             android:id="@+id/nav_handbook"
             android:icon="@drawable/ic_menu_book_open"
             android:title="@string/menu_item_handbook" />
