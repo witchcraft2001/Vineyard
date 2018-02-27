@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -64,7 +65,16 @@ public class AreasListAdapter extends RecyclerView.Adapter<AreasListAdapter.View
                 @Override
                 public void onClick(View view) {
                     if (clickListener != null) {
-                        clickListener.onClick(rowID);
+                        clickListener.onClickItem(rowID);
+                    }
+                }
+            });
+            ImageButton btn = (ImageButton)itemView.findViewById(R.id.button_edit);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (clickListener != null) {
+                        clickListener.onClickEditButton(rowID);
                     }
                 }
             });

@@ -103,6 +103,7 @@ public class BushesFragment extends Fragment implements IBushesFragmentView, Vie
 
         bushesListAdapter = new BushesListAdapter(getActivity(), null, this);
         rv.setAdapter(bushesListAdapter);
+        rv.addItemDecoration(new ItemDivider(getContext()));
         rv.setHasFixedSize(true);
         presenter = new BushesPresenter();
         presenter.init(this);
@@ -146,7 +147,14 @@ public class BushesFragment extends Fragment implements IBushesFragmentView, Vie
     }
 
     @Override
-    public void onClick(long id) {
+    public void onClickItem(long id) {
+        Intent intent = new Intent(getContext(), EditBusheActivity.class);
+        intent.putExtra("Id", id);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClickEditButton(long id) {
         Intent intent = new Intent(getContext(), EditBusheActivity.class);
         intent.putExtra("Id", id);
         startActivity(intent);

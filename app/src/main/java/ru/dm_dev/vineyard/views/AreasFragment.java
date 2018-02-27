@@ -93,6 +93,7 @@ public class AreasFragment extends Fragment implements IAreasFragmentView, View.
 
         areasListAdapter = new AreasListAdapter(getActivity(), null, this);
         rv.setAdapter(areasListAdapter);
+        rv.addItemDecoration(new ItemDivider(getContext()));
         rv.setHasFixedSize(true);
         presenter = new AreasPresenter();
         presenter.init(this);
@@ -144,7 +145,14 @@ public class AreasFragment extends Fragment implements IAreasFragmentView, View.
     }
 
     @Override
-    public void onClick(long id) {
+    public void onClickItem(long id) {
+        Intent intent = new Intent(getContext(), EditAreaActivity.class);
+        intent.putExtra("Id", id);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClickEditButton(long id) {
         Intent intent = new Intent(getContext(), EditAreaActivity.class);
         intent.putExtra("Id", id);
         startActivity(intent);

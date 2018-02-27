@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -55,6 +56,7 @@ public class BushesListAdapter extends RecyclerView.Adapter<BushesListAdapter.Vi
         public final TextView name;
         public final TextView description;
 
+
         public ViewHolder(View itemView) {
             super(itemView);
             name = (TextView)itemView.findViewById(R.id.name);
@@ -63,7 +65,16 @@ public class BushesListAdapter extends RecyclerView.Adapter<BushesListAdapter.Vi
                 @Override
                 public void onClick(View view) {
                     if (clickListener != null) {
-                        clickListener.onClick(rowID);
+                        clickListener.onClickItem(rowID);
+                    }
+                }
+            });
+            ImageButton btn = (ImageButton)itemView.findViewById(R.id.button_edit);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (clickListener != null) {
+                        clickListener.onClickEditButton(rowID);
                     }
                 }
             });
